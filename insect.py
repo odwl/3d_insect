@@ -117,8 +117,7 @@ def Recursive(candidates):
   for candidate in candidates:
     new_candidates = list(ComputeLevel(candidate))
     if new_candidates:
-      if new_candidates[0].is_complete:
-        CheckSolution(new_candidates[0].solution)
+      new_candidates[0].CheckSolution()
       Recursive(new_candidates)
 
 
@@ -139,9 +138,11 @@ class Candidate(object):
   def is_complete(self):
     return len(self.solution) == 9
 
+  def CheckSolution(self):
+    return self.is_complete and CheckSolution(self.solution)
+
 
 def Try():
-  inital_candidates = [([], AllPermutations())]
   inital_candidates = [Candidate([], AllPermutations())]
   Recursive(inital_candidates)
 
