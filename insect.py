@@ -96,13 +96,13 @@ def ComputeLevel(sol, pack):
   return list(pack.GenCopies(cand, sol))
 
 
-def Recursive(sol_packs):
+def Recursive(candidates):
   """Recursively select some candidate.
 
   Arguments:
-    sol_packs: An iterator of Candidate.
+    candidates: An iterator of Candidate.
   """
-  sol_packs = ((c.solution, c.remainings) for c in sol_packs)
+  sol_packs = ((c.solution, c.remainings) for c in candidates)
   for pairs in sol_packs:
     next_pairs = ComputeLevel(*pairs)
     next_pairs = [s for s in next_pairs if s]
