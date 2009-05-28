@@ -46,7 +46,8 @@ class Game(object):
           elif line == 2:
             str += '  %d  |' % self.pieces[pos].lst[2]
           else:
-            str += '%d  %d |' % (self.pieces[pos].lst[3], self.pieces[pos].lst[1])
+            str += '%d  %d |' % (self.pieces[pos].lst[3],
+                                 self.pieces[pos].lst[1])
         str += '\n'
       str += '-------------------\n'
     return str
@@ -123,7 +124,6 @@ def Try():
 
       for three in thirds:
         fourth = [ComputeLevel(sol, pack) for sol, pack in three]
-
         Recursive(fourth)
 
 
