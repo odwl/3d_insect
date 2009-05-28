@@ -85,7 +85,17 @@ class AllPermutations(object):
       yield new_sol, new_pack
 
 
-def ComputeLevel(sol, pack):
+def ComputeLevel(candidate):
+  """Compute the canditates for the next level.
+
+    Args:
+      candidate: A Candidate instance.
+
+    Returns:
+      A list of Candidates.
+  """
+  sol = candidate.solution
+  pack = candidate.remainings
   cand = pack.remainings()
   if len(sol) > 2:
     up = sol[-3].lst[2]
@@ -103,8 +113,7 @@ def Recursive(candidates):
     candidates: An iterator of Candidate.
   """
   for candidate in candidates:
-    pairs = candidate.solution, candidate.remainings
-    next_pairs = ComputeLevel(*pairs)
+    next_pairs = ComputeLevel(candidate)
     next_pairs = [s for s in next_pairs if s]
     if next_pairs:
       if len(next_pairs[0][0]) == 9:
