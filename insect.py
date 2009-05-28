@@ -102,8 +102,8 @@ def Recursive(candidates):
   Arguments:
     candidates: An iterator of Candidate.
   """
-  sol_packs = ((c.solution, c.remainings) for c in candidates)
-  for pairs in sol_packs:
+  for candidate in candidates:
+    pairs = candidate.solution, candidate.remainings
     next_pairs = ComputeLevel(*pairs)
     next_pairs = [s for s in next_pairs if s]
     if next_pairs:
