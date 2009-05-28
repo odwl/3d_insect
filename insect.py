@@ -108,9 +108,7 @@ def Recursive(sol_packs):
 
 
 def Try():
-    firsts = ComputeLevel([], AllPermutations())
-    seconds = [ComputeLevel(sol, pack) for sol, pack in firsts]
-    Recursive(seconds)
+  Recursive([ComputeLevel([], AllPermutations())])
 
 
 def CheckSolution(sol):
