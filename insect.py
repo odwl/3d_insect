@@ -126,7 +126,7 @@ class Candidate(object):
 
 
 def Try():
-  inital_candidates = ComputeLevel([], AllPermutations())
+  inital_candidates = [([], AllPermutations())]
   Recursive(inital_candidates)
 
 
