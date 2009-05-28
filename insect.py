@@ -121,10 +121,7 @@ def Try():
 
     for two in seconds:
       thirds = [ComputeLevel(sol, pack) for sol, pack in two]
-
-      for three in thirds:
-        fourth = [ComputeLevel(sol, pack) for sol, pack in three]
-        Recursive(fourth)
+      Recursive(thirds)
 
 
 def CheckSolution(sol):
