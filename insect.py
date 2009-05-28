@@ -97,13 +97,17 @@ def ComputeLevel(sol, pack):
 
 
 def Recursive(sol_packs):
-  for pairs in sol_packs:
-    next_pairs = (ComputeLevel(sol, pack) for sol, pack in pairs)
-    next_pairs = [s for s in next_pairs if s]
+  """Recursively select some candidate.
 
+  Arguments:
+    sol_packs: An iterator of Candidate.
+  """
+  for pairs in sol_packs:
+    next_pairs = ComputeLevel(*pairs)
+    next_pairs = [s for s in next_pairs if s]
     if next_pairs:
-      if len(next_pairs[0][0][0]) == 9:
-        CheckSolution(next_pairs[0][0][0])
+      if len(next_pairs[0][0]) == 9:
+        CheckSolution(next_pairs[0][0])
       Recursive(next_pairs)
 
 
@@ -122,7 +126,8 @@ class Candidate(object):
 
 
 def Try():
-  Recursive([ComputeLevel([], AllPermutations())])
+  inital_candidates = ComputeLevel([], AllPermutations())
+  Recursive(inital_candidates)
 
 
 def CheckSolution(sol):
