@@ -125,12 +125,6 @@ def Try():
         fourth = [ComputeLevel(sol, pack) for sol, pack in three]
 
         Recursive(fourth)
-        for four in fourth:
-
-          fifth = [ComputeLevel(sol, pack) for sol, pack in four]
-          fifth = [s for s in fifth if s]
-
-          Recursive(fifth)
 
 
 def CheckSolution(sol):
