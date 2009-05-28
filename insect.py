@@ -92,7 +92,7 @@ def ComputeLevel(candidate):
       candidate: A Candidate instance.
 
     Returns:
-      A list of Candidates.
+      An iterator of Candidates.
   """
   sol = candidate.solution
   pack = candidate.remainings
@@ -103,7 +103,7 @@ def ComputeLevel(candidate):
   if len(sol) % 3:
     left = sol[-1].lst[1]
     cand = [p for p in cand if left + p.lst[3] == 0]
-  return list(pack.GenCopies(cand, sol))
+  return (Candidate(*pair) for pair in pack.GenCopies(cand, sol))
 
 
 def Recursive(candidates):
@@ -113,8 +113,8 @@ def Recursive(candidates):
     candidates: An iterator of Candidate.
   """
   for candidate in candidates:
-    next_pairs = ComputeLevel(candidate)
-    next_pairs = [s for s in next_pairs if s]
+    new_candidates = ComputeLevel(candidate)
+    next_pairs = [(c.solution, c.remainings) for c in new_candidates if c]
     if next_pairs:
       if len(next_pairs[0][0]) == 9:
         CheckSolution(next_pairs[0][0])
