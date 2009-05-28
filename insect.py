@@ -102,12 +102,14 @@ def Recursive(sol_packs):
   Arguments:
     sol_packs: An iterator of Candidate.
   """
+  sol_packs = ((c.solution, c.remainings) for c in sol_packs)
   for pairs in sol_packs:
     next_pairs = ComputeLevel(*pairs)
     next_pairs = [s for s in next_pairs if s]
     if next_pairs:
       if len(next_pairs[0][0]) == 9:
         CheckSolution(next_pairs[0][0])
+      next_pairs = (Candidate(*n) for n in next_pairs)
       Recursive(next_pairs)
 
 
@@ -127,6 +129,7 @@ class Candidate(object):
 
 def Try():
   inital_candidates = [([], AllPermutations())]
+  inital_candidates = [Candidate([], AllPermutations())]
   Recursive(inital_candidates)
 
 
