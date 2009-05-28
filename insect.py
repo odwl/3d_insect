@@ -107,6 +107,20 @@ def Recursive(sol_packs):
       Recursive(next_pairs)
 
 
+class Candidate(object):
+  """A wrapper around a partial solution and remainings pieces.
+
+    Attributes:
+      solution: A list of Pieces representing the nth first element of a
+        solution candidate.
+      remainings: An AllPermutations instance.
+  """
+
+  def __init__(self, solution, remainings):
+    self.solution = solution
+    self.remainings = remainings
+
+
 def Try():
   Recursive([ComputeLevel([], AllPermutations())])
 
