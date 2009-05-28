@@ -84,15 +84,6 @@ class AllPermutations(object):
       new_pack.remove(piece)
       yield new_sol, new_pack
 
-def AllSecond(first_nb):
-  pack = AllPermutations()
-  first = list(pack.remainings())[first_nb]
-  pack.remove(first)
-  sol = [first]
-
-  second_cand = [p for p in pack.remainings() if first.lst[1] + p.lst[3] == 0]
-  return pack.GenCopies(second_cand, sol)
-
 
 def ComputeLevel(sol, pack):
   cand = pack.remainings()
@@ -103,6 +94,7 @@ def ComputeLevel(sol, pack):
     left = sol[-1].lst[1]
     cand = [p for p in cand if left + p.lst[3] == 0]
   return list(pack.GenCopies(cand, sol))
+
 
 def Recursive(sol_packs):
   for pairs in sol_packs:
