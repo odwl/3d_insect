@@ -61,9 +61,6 @@ class Game(object):
 class AllPermutations(object):
   def __init__(self):
     self.pieces = AllPieces()
-    self.perm = dict()
-    for piece in self.pieces:
-      self.perm[piece] = range(4)
 
   def remainings(self):
     for p in self.pieces:
@@ -76,9 +73,6 @@ class AllPermutations(object):
   def copy(self):
     new_pack = AllPermutations()
     new_pack.pieces = self.pieces[:]
-    new_pack.perm = dict()
-    for k, v in self.perm.iteritems():
-      new_pack.perm[k] = v[:]
     return new_pack
 
   def GenCopies(self, it, sol):
