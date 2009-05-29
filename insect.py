@@ -31,8 +31,14 @@ class Piece(object):
 # ROUGE 1, VIOLET 2, JAUNE 3, VERT 4
 
 class Game(object):
+  """A wraper around a solution.
+
+    Attributes:
+      pieces: A list of Pieces of size 9
+  """
 
   def __init__(self, pieces):
+    assert len(pieces) == 9
     self.pieces = pieces
 
   def __str__(self):
@@ -125,12 +131,6 @@ def Try():
         fourth = [ComputeLevel(sol, pack) for sol, pack in three]
 
         Recursive(fourth)
-        for four in fourth:
-
-          fifth = [ComputeLevel(sol, pack) for sol, pack in four]
-          fifth = [s for s in fifth if s]
-
-          Recursive(fifth)
 
 
 def CheckSolution(sol):
