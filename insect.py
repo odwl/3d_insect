@@ -67,7 +67,7 @@ class AllPermutations(object):
 
   def remainings(self):
     for p in self.pieces:
-      for perm in self.perm[p]:
+      for perm in xrange(4):
         yield Piece(p.lst, perm)
 
   def remove(self, piece):
